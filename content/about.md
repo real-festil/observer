@@ -18,4 +18,4 @@ Google introduced Web Vitals metric to get website quality metrics to to deliver
 
 ## OpenVC database
 
-List of all VC websites is provided by [OpenVC](https://www.openvc.app/).
+List of all VC websites and names is provided by [OpenVC](https://www.openvc.app/).
