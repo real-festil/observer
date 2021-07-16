@@ -1,0 +1,95 @@
+.header {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 149px 14px 151px;
+  background-color: #0A1A22;
+  color: #04D0D0;
+  border-bottom: 1px solid rgba(208, 217, 222, 0.11);
+
+  @media (max-width: 768px) {
+    padding: 12px;
+  }
+
+  &Icon {
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &Title h1 {
+    margin: 0;
+    font-size: 24px;
+    line-height: 29px;
+    cursor: pointer;
+
+    span {
+      font-weight: normal;
+    }
+  }
+
+  &Buttons {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &Buttons button:first-child {
+    border: none;
+    background: none;
+    color: #617E8C;
+    font-size: 14px;
+    line-height: 18px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+  }
+
+  &Buttons button:nth-child(2) {
+    border: none;
+    background: #04D0D0;
+    border-radius: 50px;
+    color: #0A1A22;
+    padding: 10px 20px;
+    margin-left: 72px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.6;
+      transition: 0.2s;
+    }
+  }
+}
+
+
+.modalButtons {
+  display: flex;
+  flex-direction: column;
+
+  button {
+    font-size: 22px;
+    line-height: 29px;
+    color: #617E8C;
+    background: none;
+    width: fit-content;
+    border: none;
+  }
+
+  button:nth-child(2) {
+    color: #04D0D0;
+    margin-top: 40px;
+  }
+}
+
+.modalHelp {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    color: #617E8C;
+    margin-bottom: 40px;
+  }
+}

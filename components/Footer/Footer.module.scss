@@ -1,0 +1,39 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #16262d;
+  color: #617E8C;
+  font-size: 13px;
+  line-height: 17px;
+  padding: 28px 152px;
+  margin-top: auto;
+
+  @media (max-width: 768px) {
+    flex-direction: column-reverse;
+    padding: 40px 0;
+  }
+
+  &Links {
+    @media (max-width: 768px) {
+      flex-direction: column;
+      display: flex;
+    }
+  }
+
+  &Links a {
+    text-decoration: underline;
+  }
+
+  &Links a:first-child {
+    margin-right: 17px;
+  }
+
+  p {
+    margin: 0;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+}

@@ -14,3 +14,47 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.pagination {
+  display: flex;
+  width: fit-content;
+  justify-content: space-between;
+  list-style-type: none;
+  margin: auto;
+  margin-top: 40px;
+  margin-bottom: 70px;
+  padding: 0;
+}
+
+.pagination li {
+  cursor: pointer;
+  padding: 6px 9px;
+  color: #90A4AF;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: center;
+  margin-left: 31px;
+}
+
+@media (max-width: 768px) {
+  .pagination li {
+    margin-left: 18px;
+  }
+}
+
+.pagination li:first-child {
+  margin: 0;
+}
+
+.pagination .active {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: #fff;
+}
+
+.custom-tooltip {
+  background-color: #617E8C !important;
+  color: #0A1A22;
+}
+
+div.rt-td { align-self: center; }

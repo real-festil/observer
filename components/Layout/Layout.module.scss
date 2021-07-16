@@ -1,0 +1,15 @@
+.layout {
+  background-color: #0A1A22;
+  min-height: 100vh;
+  color: #617E8C;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  padding: 0 149px;
+
+  @media (max-width: 768px) {
+    padding: 0
+  }
+}

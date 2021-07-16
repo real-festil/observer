@@ -1,0 +1,103 @@
+.table {
+  width: 100%;
+  margin-top: 73px;
+  background-color: #0A1A22;
+
+  @media (max-width: 768px) {
+    width: 837px;
+    margin-top: 26px;
+  }
+
+  thead {
+    color: #04D0D0;
+    text-align: right;
+  }
+
+  tr {
+    height: 62px;
+  }
+
+  td {
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    border-bottom: 2px solid rgba(208, 217, 222, 0.1);
+    background-color: #0A1A22;
+  }
+
+  th {
+    background-color: #0A1A22;
+  }
+
+  th:nth-child(1), th:nth-child(2) {
+    text-align: left;
+  }
+
+  td:nth-child(2) {
+    text-align: left;
+    @media (max-width: 768px) {
+      left: 52px !important;
+    }
+  }
+
+  @media (max-width: 768px) {
+    th:nth-child(1) {
+      text-align:center;
+    }
+  }
+
+  th:nth-child(2) {
+    @media (max-width: 768px) {
+      left: 52px !important;
+    }
+  }
+
+  td:nth-child(1) {
+    text-align: center;
+  }
+
+  &Image {
+    div {
+      margin-right: 0px;
+      position: relative;
+      top: 3px;
+      left: -26px;
+
+      @media (max-width: 768px) {
+        left: -20px;
+      }
+    }
+  }
+}
+
+.textWrapper {
+  margin-left: -18px;
+}
+
+.headerTip {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  p {
+    margin: 0;
+  }
+
+  svg {
+    margin-left: 6px;
+  }
+}
+
+.link {
+  text-decoration: underline;
+
+  &:hover {
+    color: #fff !important;
+  }
+}
+
+.tableWrapper {
+  @media (max-width: 768px) {
+    overflow: scroll;
+  }
+}
