@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 /* eslint-disable react/jsx-key */
 import React, { useEffect } from 'react';
 // import { data } from '../../mockData';
@@ -62,7 +63,7 @@ const Table = () => {
         Header: 'Fund',
         accessor: 'name',
         sticky: 'left',
-        Cell: ({row}) => (<a className={styles.link} href={row.original.url} target="_blank" rel="noreferrer">{console.log('row' ,row)}{row.original.name}</a>)
+        Cell: ({row} : any) => (<a className={styles.link} href={row.original.url} target="_blank" rel="noreferrer">{console.log('row' ,row)}{row.original.name}</a>)
       },
       {
         Header: overallHeader,
