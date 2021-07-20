@@ -13,17 +13,19 @@ import silver from '../../public/silverCup.png';
 import bronze from '../../public/bronzeCup.png';
 import { useMediaQuery } from 'react-responsive'
 import firebase from "firebase";
+import Skeleton, { SkeletonTheme }  from 'react-loading-skeleton';
 
 const Table = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 768px)'
   })
   const [data, setData] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     ReactTooltip.rebuild();
     const dbRef = firebase.database().ref();
-    dbRef.child("sites").orderByChild('overallScore').get().then((snapshot) => {
+    dbRef.child("sites").get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
       } else {
@@ -34,7 +36,8 @@ const Table = () => {
     });
   }, [])
 
-  const unMemoizedData = Object.entries(data).map((site) => site[1]);
+  const unMemoizedData = Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore);
+  console.log(`unMemoizedData`, unMemoizedData)
   const tableData = React.useMemo(() => unMemoizedData, [data]);
 
   console.log(`tableData`, tableData)
@@ -102,7 +105,7 @@ const Table = () => {
     <div>
       <ReactTooltip className="custom-tooltip" arrowColor="#617E8C" />
       <div className={styles.tableWrapper}>
-        <table cellSpacing="0" className={styles.table} {...getTableProps()}>
+        <table cellSpacing="0" className={styles.table} style={{marginBottom: !(unMemoizedData.length > 0) ? '650px' : '0'}} {...getTableProps()}>
           <thead>
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -114,6 +117,14 @@ const Table = () => {
               </tr>
             ))}
           </thead>
+
+          {!(unMemoizedData?.length > 0) && (
+            <div className={styles.tableLoader}>
+              <SkeletonTheme color="#13242d" highlightColor="#376882">
+                <Skeleton count={10} width={'100%'} />
+              </SkeletonTheme>
+            </div>
+          )}
           <tbody {...getTableBodyProps()}>
             {page.map((row: Row<object>, index: number) => {
               if (index === 0 && pageIndex === 0 ) {
@@ -205,21 +216,23 @@ const Table = () => {
         </table>
       </div>
       <div>
-      <ReactPaginate
-          previousLabel={'<'}
-          nextLabel={'>'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={pageCount}
-          marginPagesDisplayed={1}
-          pageRangeDisplayed={isDesktopOrLaptop ? 6 : 2}
-          onPageChange={(prop) => {
-            console.log(`prop`, prop)
-            gotoPage(prop.selected);
-          }}
-          containerClassName={'pagination'}
-          activeClassName={'active'}
-        />
+      {unMemoizedData.length  > 0 && (
+        <ReactPaginate
+            previousLabel={'<'}
+            nextLabel={'>'}
+            breakLabel={'...'}
+            breakClassName={'break-me'}
+            pageCount={pageCount}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={isDesktopOrLaptop ? 6 : 2}
+            onPageChange={(prop) => {
+              console.log(`prop`, prop)
+              gotoPage(prop.selected);
+            }}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+          />
+      )}
       </div>
     </div>
   )

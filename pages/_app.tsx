@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBVMKf04UkLz9OwSxcFnn9TNqICupD3vYo",
+  apiKey: process.env.FIREBASE_KEY,
   authDomain: "observer-vc.firebaseapp.com",
   databaseURL: "https://observer-vc-default-rtdb.firebaseio.com",
   projectId: "observer-vc",
