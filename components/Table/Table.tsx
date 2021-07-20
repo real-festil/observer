@@ -25,7 +25,7 @@ const Table = () => {
   React.useEffect(() => {
     ReactTooltip.rebuild();
     const dbRef = firebase.database().ref();
-    dbRef.child("sites").get().then((snapshot) => {
+    dbRef.child("sites").limitToFirst(100).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
       } else {
@@ -39,8 +39,6 @@ const Table = () => {
   const unMemoizedData = Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore);
   console.log(`unMemoizedData`, unMemoizedData)
   const tableData = React.useMemo(() => unMemoizedData, [data]);
-
-  console.log(`tableData`, tableData)
 
   const InfoIcon = ({tip}: {tip: string}) => (
     <svg data-tip={tip} width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
