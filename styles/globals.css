@@ -36,6 +36,10 @@ a {
   margin-left: 31px;
 }
 
+.pagination a {
+  outline: none;
+}
+
 @media (max-width: 768px) {
   .pagination li {
     margin-left: 18px;

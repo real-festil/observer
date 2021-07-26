@@ -44,7 +44,7 @@
   td:nth-child(2) {
     text-align: left;
     @media (max-width: 768px) {
-      left: 57px !important;
+      left: 49px !important;
     }
   }
 
@@ -56,12 +56,15 @@
 
   th:nth-child(2) {
     @media (max-width: 768px) {
-      left: 57px !important;
+      left: 49px !important;
     }
   }
 
   td:nth-child(1) {
     text-align: center;
+    @media (max-width: 768px) {
+      padding-left: 20px;
+    }
   }
 
   &Image {
@@ -74,6 +77,7 @@
 
       @media (max-width: 768px) {
         left: -20px;
+        width: 16px;
       }
     }
   }

@@ -24,6 +24,8 @@ const Header = () => {
   const [isMenuVisible, setIsMenuVisible] = useState(false);
   const [isHelpVisible, setIsHelpVisible] = useState(false);
 
+  console.log(router);
+
   return (
     <header className={styles.header}>
       <div className={styles.headerIcon} onClick={() => setIsMenuVisible(true)}>
@@ -42,7 +44,7 @@ const Header = () => {
       {isMenuVisible && (
         <Modal onClose={() => setIsMenuVisible(false)}>
           <div className={styles.modalButtons}>
-            <button onClick={() => router.push('/about')}>About</button>
+            <button onClick={() => router.push(router.pathname === '/' ? `/about` : `/`)}>{router.pathname === '/' ? `About` : `Main`}</button>
             <button onClick={() => window.open('https://t.me/dandaka', '_blank')}>Contact</button>
           </div>
         </Modal>
@@ -51,7 +53,7 @@ const Header = () => {
         <Modal onClose={() => setIsHelpVisible(false)}>
           <div className={styles.modalHelp}>
             <p>CMS — Content Management System</p>
-            <p>PSI — age Speed Insights</p>
+            <p>PSI — Page Speed Insights</p>
             <p>Uty — Usability</p>
             <p>Overall — Overall Score</p>
           </div>

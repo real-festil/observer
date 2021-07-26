@@ -37,7 +37,6 @@ const Table = () => {
   }, [])
 
   const unMemoizedData = Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore);
-  console.log(`unMemoizedData`, unMemoizedData)
   const tableData = React.useMemo(() => unMemoizedData, [data]);
 
   const InfoIcon = ({tip}: {tip: string}) => (
@@ -48,9 +47,9 @@ const Table = () => {
   )
 
   const overallHeader = <div className={styles.headerTip}><p>Overall</p><InfoIcon tip="Overall score" /></div>;
-  const psiHeader = <div className={styles.headerTip}><p>PSI</p><InfoIcon tip="Pagespeed insights" /></div>;
+  const psiHeader = <div className={styles.headerTip}><p>PSI</p><InfoIcon tip="Page Speed Insights" /></div>;
   const utyHeader = <div className={styles.headerTip}><p>Uty</p><InfoIcon tip="Usability" /></div>;
-  const cmsHeader = <div className={styles.headerTip}><p>CMS</p><InfoIcon tip="Content management system" /></div>;
+  const cmsHeader = <div className={styles.headerTip}><p>CMS</p><InfoIcon tip="Content Management System" /></div>;
 
   const columns = React.useMemo(
     () => [
@@ -58,13 +57,13 @@ const Table = () => {
         Header: 'Rank',
         id: 'index',
         sticky: 'left',
-        accessor: (_row: any, i : number) => i + 1
+        accessor: (_row: any, i : number) => i + 1,
       },
       {
         Header: 'Fund',
         accessor: 'name',
         sticky: 'left',
-        Cell: ({row} : any) => (<a className={styles.link} href={row.original.url} target="_blank" rel="noreferrer">{console.log('row' ,row)}{row.original.name}</a>)
+        Cell: ({row} : any) => (<a className={styles.link} href={row.original.url} target="_blank" rel="noreferrer">{row.original.name}</a>)
       },
       {
         Header: overallHeader,
@@ -81,6 +80,7 @@ const Table = () => {
       {
         Header: cmsHeader,
         accessor: 'cms',
+        Cell: ({row} : any) => (<p style={{marginRight: '20px'}}>{row.original.cms.split(',').join(', ')}</p>)
       },
     ],
     []
@@ -224,7 +224,6 @@ const Table = () => {
             marginPagesDisplayed={1}
             pageRangeDisplayed={isDesktopOrLaptop ? 6 : 2}
             onPageChange={(prop) => {
-              console.log(`prop`, prop)
               gotoPage(prop.selected);
             }}
             containerClassName={'pagination'}

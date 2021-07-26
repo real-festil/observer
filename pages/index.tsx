@@ -7,7 +7,8 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Observer VS</title>
+        <title>Observer VC | Main</title>
+        <meta name="description" content="We promote Web Vitals metrics in VC and startup markets" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>

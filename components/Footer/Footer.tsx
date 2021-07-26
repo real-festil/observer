@@ -13,7 +13,7 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerLinks}>
-        <a href="http://www.twiter.com" target="_blank" rel="noreferrer">Twitter</a>
+        <a href="https://twitter.com/Accuraten_us" target="_blank" rel="noreferrer">Twitter</a>
         <a href="http://www.github.com" target="_blank" rel="noreferrer" style={{marginTop: isDesktopOrLaptop ? 0 : '30px'}}>GitHub</a>
       </div>
       {!isDesktopOrLaptop && (
@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
       )}
       <div>
-        <p>Made by <span>Accuration</span></p>
+        <a href="https://accuraten.com/en/">Made by <span>Accuration</span></a>
       </div>
       {isDesktopOrLaptop && (
         <div>
