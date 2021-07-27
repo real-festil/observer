@@ -25,7 +25,7 @@ const Table = () => {
   React.useEffect(() => {
     ReactTooltip.rebuild();
     const dbRef = firebase.database().ref();
-    dbRef.child("sites").limitToFirst(100).get().then((snapshot) => {
+    dbRef.child("sites").orderByChild("overallScore").limitToFirst(100).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
       } else {
