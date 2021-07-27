@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
       )}
       <div>
-        <a href="https://accuraten.com/en/">Made by <span>Accuration</span></a>
+        <a href="https://accuraten.com/en/" target="_blank" rel="noreferrer">Made by <span>Accuration</span></a>
       </div>
       {isDesktopOrLaptop && (
         <div>

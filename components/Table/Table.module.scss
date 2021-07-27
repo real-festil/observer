@@ -44,7 +44,8 @@
   td:nth-child(2) {
     text-align: left;
     @media (max-width: 768px) {
-      left: 49px !important;
+      left: 72px !important;
+      width: 150px !important;
     }
   }
 
@@ -52,11 +53,27 @@
     th:nth-child(1) {
       text-align:center;
     }
+
+    td:nth-child(1) {
+      width: 60px;
+    }
+
+    td:nth-child(3) {
+      width: 95px;
+    }
+
+    td:nth-child(4) {
+      width: 95px;
+    }
+
+    td:nth-child(5) {
+      width: 95px;
+    }
   }
 
   th:nth-child(2) {
     @media (max-width: 768px) {
-      left: 49px !important;
+      left: 72px !important;
     }
   }
 
@@ -64,6 +81,17 @@
     text-align: center;
     @media (max-width: 768px) {
       padding-left: 20px;
+    }
+  }
+
+  td:last-child {
+    p {
+      margin: 0;
+    }
+
+    width: 300px !important;
+    @media (max-width: 768px) {
+      width: 200px !important;
     }
   }
 

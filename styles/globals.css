@@ -27,7 +27,6 @@ a {
 }
 
 .pagination li {
-  cursor: pointer;
   padding: 6px 9px;
   color: #90A4AF;
   font-size: 14px;
@@ -38,11 +37,21 @@ a {
 
 .pagination a {
   outline: none;
+  padding: 6px;
+  margin: -6px;
+  cursor: pointer;
 }
+
+
 
 @media (max-width: 768px) {
   .pagination li {
-    margin-left: 18px;
+    margin-left: 14px;
+  }
+
+  .break-me {
+    margin-left: 5px !important;
+    margin-right: -13px !important;
   }
 }
 

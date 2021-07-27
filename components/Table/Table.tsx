@@ -25,7 +25,7 @@ const Table = () => {
   React.useEffect(() => {
     ReactTooltip.rebuild();
     const dbRef = firebase.database().ref();
-    dbRef.child("sites").orderByChild("overallScore").limitToFirst(100).get().then((snapshot) => {
+    dbRef.child("sites").orderByChild("overallScore").limitToLast(100).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
       } else {
@@ -46,7 +46,7 @@ const Table = () => {
     </svg>
   )
 
-  const overallHeader = <div className={styles.headerTip}><p>Overall</p><InfoIcon tip="Overall score" /></div>;
+  const overallHeader = <div className={styles.headerTip}><p>Overall</p><InfoIcon tip="Overall Score" /></div>;
   const psiHeader = <div className={styles.headerTip}><p>PSI</p><InfoIcon tip="Page Speed Insights" /></div>;
   const utyHeader = <div className={styles.headerTip}><p>Uty</p><InfoIcon tip="Usability" /></div>;
   const cmsHeader = <div className={styles.headerTip}><p>CMS</p><InfoIcon tip="Content Management System" /></div>;
@@ -68,23 +68,51 @@ const Table = () => {
       {
         Header: overallHeader,
         accessor: 'overallScore',
+        Cell: ({row} : any) => (<p>{row.original.overallScore ? Number(row.original.overallScore).toFixed(2) : ''}</p>)
       },
       {
         Header: psiHeader,
         accessor: 'psiScoreOverall',
+        Cell: ({row} : any) => (<p>{row.original.psiScoreOverall ? Number(row.original.psiScoreOverall).toFixed(2) : ''}</p>)
       },
       {
         Header: utyHeader,
         accessor: 'usabilityScore',
+        Cell: ({row} : any) => (<p>{row.original.usabilityScore ? Number(row.original.usabilityScore).toFixed(2) : ''}</p>)
       },
       {
         Header: cmsHeader,
         accessor: 'cms',
-        Cell: ({row} : any) => (<p style={{marginRight: '20px'}}>{row.original.cms.split(',').join(', ')}</p>)
+        width: 300,
+        Cell: ({row} : any) => (<p style={{marginRight: '20px'}}>{row.original.cms ? row.original.cms.split(',').join(', ') : ''}</p>)
       },
     ],
     []
-  )
+  );
+
+  const onPageChange = (pageNumber: number) => {
+    if (pageNumber === pageCount - 1) {
+      const dbRef = firebase.database().ref();
+      dbRef.child("sites")
+        .orderByChild("overallScore")
+        //@ts-ignore
+        .endBefore(data[Object.keys(data)[Object.keys(data).length - 2].toString()].overallScore, Object.keys(data)[Object.keys(data).length - 2].toString())
+        .limitToLast(100)
+        .get()
+        .then((snapshot) => {
+        if (snapshot.exists()) {
+          setData({...data, ...snapshot.val()});
+          gotoPage(pageNumber)
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+    } else {
+      gotoPage(pageNumber);
+    }
+  }
 
   const tableInstance = useTable({ columns, data: tableData }, usePagination, useSticky);
 
@@ -98,6 +126,8 @@ const Table = () => {
     gotoPage,
     state: { pageIndex},
   } = tableInstance
+
+  console.log(`unMemoizedData`, unMemoizedData)
 
   return (
     <div>
@@ -224,7 +254,7 @@ const Table = () => {
             marginPagesDisplayed={1}
             pageRangeDisplayed={isDesktopOrLaptop ? 6 : 2}
             onPageChange={(prop) => {
-              gotoPage(prop.selected);
+              onPageChange(prop.selected);
             }}
             containerClassName={'pagination'}
             activeClassName={'active'}
