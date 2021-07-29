@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "firebase": "^8.7.1",
+    "moment": "^2.29.1",
     "next": "11.0.1",
     "next-seo": "^4.26.0",
     "node-sass": "^6.0.1",

@@ -3,11 +3,32 @@ import styles from '../styles/Home.module.scss';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
 import { useMediaQuery } from 'react-responsive';
+import React, {useState, useEffect} from 'react';
+import firebase from 'firebase';
+import moment from 'moment';
+import Skeleton, { SkeletonTheme }  from 'react-loading-skeleton';
 
 export default function Home() {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-device-width: 768px)'
   })
+
+  const [lastUpdated, setLastUpdated] = useState(null as any);
+
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.child("lastUpdated").get().then((snapshot) => {
+      if (snapshot.exists()) {
+        setLastUpdated(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }, []);
+
+  console.log(`lastUpdated`, lastUpdated)
 
   return (
     <div className={styles.container}>
@@ -23,7 +44,13 @@ export default function Home() {
           ): (
             <h1 className={styles.title}>Top VCs by <br /> website performance</h1>
           )}
-        <p className={styles.subtitle}>Last updated: 01 June 2021 </p>
+          <p className={styles.subtitle}>
+            {lastUpdated ?
+              `Last updated: ${moment(lastUpdated).format('D MMMM YYYY')}` :
+              <SkeletonTheme color="#13242d" highlightColor="#376882">
+                <Skeleton />
+              </SkeletonTheme>}
+            </p>
         <Table/>
       </Layout>
     </div>

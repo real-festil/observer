@@ -84,7 +84,7 @@ const Table = () => {
         Header: cmsHeader,
         accessor: 'cms',
         width: 300,
-        Cell: ({row} : any) => (<p style={{marginRight: '20px'}}>{row.original.cms ? row.original.cms.split(',').join(', ') : ''}</p>)
+        Cell: ({row} : any) => (<p style={{marginRight: '10px', textAlign: 'center'}}>{row.original.cms ? row.original.cms.split(',').join(', ') : ''}</p>)
       },
     ],
     []

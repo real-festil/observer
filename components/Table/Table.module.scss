@@ -43,6 +43,10 @@
 
   td:nth-child(2) {
     text-align: left;
+    @media (min-width: 768px) {
+      width: 200px !important;
+    }
+
     @media (max-width: 768px) {
       left: 72px !important;
       width: 150px !important;
@@ -74,6 +78,14 @@
   th:nth-child(2) {
     @media (max-width: 768px) {
       left: 72px !important;
+    }
+  }
+
+  th:last-child {
+    text-align: center;
+
+    div {
+      justify-content: center
     }
   }
 
