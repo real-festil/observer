@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           description: 'Observer mission is to promote Web Vitals metrics in VC and startup markets. We use data from Google’s Pagespeed Insights API to get performance metrics for venture fund websites.',
           images: [
             {
-              url: 'https://www.example.ie/og-image-01.jpg',
+              url: 'https://raw.githubusercontent.com/real-festil/observer/main/public/ogLarge.png',
               width: 800,
               height: 600,
               alt: 'Og Image Alt',
