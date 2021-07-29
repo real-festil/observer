@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app';
 import firebase from 'firebase';
+import React from 'react';
+import { DefaultSeo } from 'next-seo';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_KEY,
@@ -21,6 +23,25 @@ try {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <DefaultSeo
+        openGraph={{
+          title: 'Observer VC',
+          description: 'Observer mission is to promote Web Vitals metrics in VC and startup markets. We use data from Google’s Pagespeed Insights API to get performance metrics for venture fund websites.',
+          images: [
+            {
+              url: 'https://www.example.ie/og-image-01.jpg',
+              width: 800,
+              height: 600,
+              alt: 'Og Image Alt',
+            }
+          ],
+          site_name: 'Observer VC',
+        }}
+      />
+      <Component {...pageProps} />
+    </>
+  )
 }
 export default MyApp
