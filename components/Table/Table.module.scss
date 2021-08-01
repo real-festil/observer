@@ -82,10 +82,12 @@
   }
 
   th:last-child {
-    text-align: center;
+    text-align: left;
+    margin-left: 20px;
 
     div {
-      justify-content: center
+      justify-content: left;
+      margin-left: 40px;
     }
   }
 
