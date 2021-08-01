@@ -1,7 +1,9 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import Header from '../Header';
-import Footer from '../Footer';
 import styles from './Layout.module.scss';
+
+const Footer = dynamic(() => import('../Footer'))
 
 const Layout = ({children}: {children: React.ReactNode}) => {
   return (

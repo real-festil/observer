@@ -1,12 +1,14 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss';
 import Layout from '../components/Layout';
-import Table from '../components/Table';
 import { useMediaQuery } from 'react-responsive';
 import React, {useState, useEffect} from 'react';
 import firebase from 'firebase';
 import moment from 'moment';
+import dynamic from 'next/dynamic'
 import Skeleton, { SkeletonTheme }  from 'react-loading-skeleton';
+
+const Table = dynamic(() => import('../components/Table'));
 
 export default function Home() {
   const isDesktopOrLaptop = useMediaQuery({

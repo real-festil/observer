@@ -5,7 +5,6 @@ import React, { useEffect } from 'react';
 import { useTable, usePagination, useFlexLayout, useBlockLayout, Row } from 'react-table';
 import { useSticky } from 'react-table-sticky';
 import styles from './Table.module.scss';
-import ReactPaginate from 'react-paginate';
 import ReactTooltip from 'react-tooltip';
 import Image from 'next/image'
 import gold from '../../public/goldCup.png';
@@ -13,7 +12,10 @@ import silver from '../../public/silverCup.png';
 import bronze from '../../public/bronzeCup.png';
 import { useMediaQuery } from 'react-responsive'
 import firebase from "firebase";
+import dynamic from 'next/dynamic'
 import Skeleton, { SkeletonTheme }  from 'react-loading-skeleton';
+
+const ReactPaginate = dynamic(() => import('react-paginate'))
 
 const Table = () => {
   const isDesktopOrLaptop = useMediaQuery({
