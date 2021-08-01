@@ -20,14 +20,16 @@ const Table = () => {
     query: '(min-device-width: 768px)'
   })
   const [data, setData] = React.useState([]);
+  const [isTableLoaded, setIsTableLoaded] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     ReactTooltip.rebuild();
     const dbRef = firebase.database().ref();
-    dbRef.child("sites").orderByChild("overallScore").limitToLast(30).get().then((snapshot) => {
+    dbRef.child("sites").orderByChild("overallScore").limitToLast(25).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
+        setIsTableLoaded(true)
       } else {
         console.log("No data available");
       }
@@ -35,6 +37,22 @@ const Table = () => {
       console.error(error);
     });
   }, [])
+
+  React.useEffect(() => {
+    if(isTableLoaded) {
+      const dbRef = firebase.database().ref();
+      dbRef.child("sites").orderByChild("overallScore").limitToLast(100).get().then((snapshot) => {
+        if (snapshot.exists()) {
+          setData(snapshot.val());
+          setIsTableLoaded(false)
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+    }
+  }, [isTableLoaded])
 
   const unMemoizedData = Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore);
   const tableData = React.useMemo(() => unMemoizedData, [data]);
