@@ -14,18 +14,19 @@ const Footer = () => {
     <footer className={styles.footer}>
       <div className={styles.footerLinks}>
         <a href="https://twitter.com/Accuraten_us" target="_blank" rel="noreferrer">Twitter</a>
-        <a href="http://www.github.com" target="_blank" rel="noreferrer" style={{marginTop: isDesktopOrLaptop ? 0 : '30px'}}>GitHub</a>
+        <a href="https://github.com/accuratencom" target="_blank" rel="noreferrer" style={{marginTop: isDesktopOrLaptop ? 0 : '30px'}}>GitHub</a>
       </div>
       {!isDesktopOrLaptop && (
         <div style={{marginTop: '30px', marginBottom: '30px'}}>
-          <Image src={vercelLogo} alt="vercel" />
+          <VercelLogo />
+          {/* <Image src={vercelLogo} alt="vercel" /> */}
         </div>
       )}
       <div>
-        <a href="https://accuraten.com/en/" target="_blank" rel="noreferrer">Made by <span>Accuration</span></a>
+        <a href="https://accuraten.com/en/" target="_blank" rel="noreferrer">Made by <span>Accuraten</span></a>
       </div>
       {isDesktopOrLaptop && (
-        <div>
+        <div style={{width: '144px'}}>
           <VercelLogo />
           {/* <Image src={vercelLogo} alt="vercel" /> */}
         </div>

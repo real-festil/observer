@@ -147,8 +147,6 @@ const Table = () => {
     state: { pageIndex},
   } = tableInstance
 
-  console.log(`unMemoizedData`, unMemoizedData)
-
   return (
     <div>
       <ReactTooltip className="custom-tooltip" arrowColor="#617E8C" />
