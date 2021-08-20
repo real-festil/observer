@@ -4,6 +4,10 @@
   background-color: #0A1A22;
   position: relative;
 
+  &Wrapper {
+    position: relative;
+  }
+
   @media (max-width: 768px) {
     width: 837px;
     margin-top: 26px;
@@ -16,7 +20,7 @@
     line-height: 62px;
 
     @media (min-width: 768px) {
-      width: calc(100% - 298px);
+      width: 100%;
     }
   }
 
