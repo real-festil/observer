@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
       )}
       <div>
-        <a href="https://accuraten.com/en/" target="_blank" rel="noreferrer">Made by <span>Accuraten</span></a>
+        <a href="https://accuraten.com/en/" target="_blank" rel="noreferrer">Made by <span style={{textDecoration: 'underline'}}>Accuraten</span></a>
       </div>
       {isDesktopOrLaptop && (
         <div style={{width: '144px'}}>

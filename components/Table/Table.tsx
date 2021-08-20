@@ -31,6 +31,7 @@ const Table = () => {
     dbRef.child("sites").orderByChild("overallScore").limitToLast(25).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
+        console.log(`snapshot.val()`, snapshot.val())
         setIsTableLoaded(true)
       } else {
         console.log("No data available");
@@ -104,7 +105,7 @@ const Table = () => {
         Header: cmsHeader,
         accessor: 'cms',
         width: 300,
-        Cell: ({row} : any) => (<p style={{marginRight: '10px', textAlign: 'center'}}>{row.original.cms ? row.original.cms.split(',').join(', ') : ''}</p>)
+        Cell: ({row} : any) => (<p style={{marginRight: '10px', textAlign: 'center'}}>{console.log(row.original)}{row.original.cmsShort}</p>)
       },
     ],
     []
