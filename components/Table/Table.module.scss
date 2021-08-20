@@ -167,3 +167,9 @@
     overflow: scroll;
   }
 }
+
+.wrapper {
+  div:first-child {
+    border: none !important;
+  }
+}

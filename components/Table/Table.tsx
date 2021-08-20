@@ -28,7 +28,7 @@ const Table = () => {
   React.useEffect(() => {
     ReactTooltip.rebuild();
     const dbRef = firebase.database().ref();
-    dbRef.child("sites").orderByChild("overallScore").limitToLast(25).get().then((snapshot) => {
+    dbRef.child("sites").orderByChild("overallScore").limitToLast(10).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
         console.log(`snapshot.val()`, snapshot.val())
@@ -149,7 +149,7 @@ const Table = () => {
   } = tableInstance
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <ReactTooltip className="custom-tooltip" arrowColor="#617E8C" />
       <div className={styles.tableWrapper}>
         <table cellSpacing="0" className={styles.table} style={{marginBottom: !(unMemoizedData.length > 0) ? '650px' : '0'}} {...getTableProps()}>
