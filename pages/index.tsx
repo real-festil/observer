@@ -40,12 +40,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        {isDesktopOrLaptop ? (
-
           <h1 className={styles.title}>Top VCs by website performance</h1>
-          ): (
-            <h1 className={styles.title}>Top VCs by <br /> website performance</h1>
-          )}
           <p className={styles.subtitle}>
             {lastUpdated ?
               `Last updated: ${moment(lastUpdated).format('D MMMM YYYY')}` :
