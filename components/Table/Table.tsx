@@ -49,7 +49,7 @@ const Table = () => {
     dbRef.child("sites").orderByChild("overallScore").limitToLast(10).get().then((snapshot) => {
       if (snapshot.exists()) {
         setData(snapshot.val());
-        console.log(`snapshot.val()`, snapshot.val())
+        console.log(`snapshot.val()`, snapshot.val());
         setIsTableLoaded(true)
       } else {
         console.log("No data available");
@@ -76,7 +76,7 @@ const Table = () => {
   }, [isTableLoaded])
 
   const unMemoizedData = Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore);
-  const tableData = React.useMemo(() => unMemoizedData, [data]);
+  const tableData = React.useMemo(() => unMemoizedData, [unMemoizedData]);
 
   const InfoIcon = ({tip}: {tip: string}) => (
     <svg data-tip={tip} width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
