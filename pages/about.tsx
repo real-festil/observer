@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/About.module.scss';
 import Layout from '../components/Layout';
-import Table from '../components/Table';
 
 export default function Home() {
   return (
