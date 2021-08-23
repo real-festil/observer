@@ -75,8 +75,7 @@ const Table = () => {
     }
   }, [isTableLoaded])
 
-  const unMemoizedData = Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore);
-  const tableData = React.useMemo(() => unMemoizedData, [unMemoizedData]);
+  const tableData = React.useMemo(() => Object.entries(data).map((site) => site[1]).sort((a: {overallScore: number}, b: {overallScore: number})=> b.overallScore - a.overallScore), [data]);
 
   const InfoIcon = ({tip}: {tip: string}) => (
     <svg data-tip={tip} width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +169,7 @@ const Table = () => {
     <div className={styles.wrapper}>
       <ReactTooltip className="custom-tooltip" arrowColor="#617E8C" />
       <div className={styles.tableWrapper}>
-        <table cellSpacing="0" className={styles.table} style={{marginBottom: !(unMemoizedData.length > 0) ? '650px' : '0'}} {...getTableProps()}>
+        <table cellSpacing="0" className={styles.table} style={{marginBottom: !(tableData.length > 0) ? '650px' : '0'}} {...getTableProps()}>
           <thead>
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -183,7 +182,7 @@ const Table = () => {
             ))}
           </thead>
 
-          {!(unMemoizedData?.length > 0) && (
+          {!(tableData?.length > 0) && (
             <div className={styles.tableLoader}>
               <SkeletonTheme color="#13242d" highlightColor="#376882">
                 <Skeleton count={10} width={'100%'} />
@@ -281,7 +280,7 @@ const Table = () => {
         </table>
       </div>
       <div>
-      {unMemoizedData.length  > 0 && (
+      {tableData.length  > 0 && (
         <ReactPaginate
             previousLabel={'<'}
             nextLabel={'>'}
