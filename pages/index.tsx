@@ -1,29 +1,29 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.scss';
 import Layout from '../components/Layout';
-import React from 'react';
-// import firebase from 'firebase';
-// import moment from 'moment';
+import React, {useState, useEffect} from 'react';
+import firebase from 'firebase';
+import moment from 'moment';
 import dynamic from 'next/dynamic'
-// import Skeleton, { SkeletonTheme }  from 'react-loading-skeleton';
+import Skeleton, { SkeletonTheme }  from 'react-loading-skeleton';
 
 const Table = dynamic(() => import('../components/Table'));
 
 export default function Home() {
-  // const [lastUpdated, setLastUpdated] = useState(null as any);
+  const [lastUpdated, setLastUpdated] = useState(null as any);
 
-  // useEffect(() => {
-  //   const dbRef = firebase.database().ref();
-  //   dbRef.child("lastUpdated").get().then((snapshot) => {
-  //     if (snapshot.exists()) {
-  //       setLastUpdated(snapshot.val());
-  //     } else {
-  //       console.log("No data available");
-  //     }
-  //   }).catch((error) => {
-  //     console.error(error);
-  //   });
-  // }, []);
+  useEffect(() => {
+    const dbRef = firebase.database().ref();
+    dbRef.child("lastUpdated").get().then((snapshot) => {
+      if (snapshot.exists()) {
+        setLastUpdated(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -34,13 +34,13 @@ export default function Home() {
       </Head>
       <Layout>
           <h1 className={styles.title}>Top VCs by website performance</h1>
-          {/* <p className={styles.subtitle}>
+          <p className={styles.subtitle}>
             {lastUpdated ?
               `Last updated: ${moment(lastUpdated).format('D MMMM YYYY')}` :
               <SkeletonTheme color="#13242d" highlightColor="#376882">
                 <Skeleton />
               </SkeletonTheme>}
-            </p> */}
+            </p>
         <Table/>
       </Layout>
     </div>
